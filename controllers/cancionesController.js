@@ -17,7 +17,7 @@ module.exports ={
 
     show:(req, res)=>{
         DB.Cancion
-            .findAll()
+            .findByPk(req.params.id)
             .then(cancion =>{
                 return res.status(200).json({
                     data: cancion,
@@ -26,17 +26,16 @@ module.exports ={
             })
     },
 
-    store:(req, res)=> {
-
+    store: (req, res)=>{
         DB.Cancion
-            .create(req.body)
-            .then (cancion =>{
-                return res.status(200).json({
-                    data: cancion,
-                    status: 200, 
-                    created: "ok"
-                })
+        .create(req.body)
+        .then (cancion =>{
+            return res.status(200).json({
+                data: cancion,
+                status: 200, 
+                created: "ok"
             })
+        })
     },
 
     delete:(req, res)=>{
@@ -53,7 +52,8 @@ module.exports ={
 
     update:(req, res)=>{
         DB.Cancion
-        .replace({
+        .update(req.body, 
+            {
             where:{
                 id:req.params.id
             }
@@ -64,14 +64,4 @@ module.exports ={
         
     }
 
-
-    //     DB.Cancion
-    //         .replace({
-    //             where:{
-    //                 id: req.params.id
-    //             }
-    //         })
-    //         .then(response =>{
-    //             return res.json(response)
-    //         })
 }

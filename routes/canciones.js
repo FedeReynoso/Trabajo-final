@@ -3,17 +3,16 @@ const router = express.Router();
 
 const cancionesController = require ("../controllers/cancionesController");
 
-
+//listar
 router.get("/", cancionesController.list);
+//buscar 
 router.get("/:id", cancionesController.show);
+//crear 
 router.post("/", cancionesController.store);
-router.delete("/:id", cancionesController.delete);
-
-//ruteo para update 
-router.get("/:id", cancionesController.update);
+//update 
 router.put("/:id", cancionesController.update);
-
-
+//delete 
+router.delete("/:id", cancionesController.delete);
 
 
 module.exports = router;
