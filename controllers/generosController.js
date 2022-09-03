@@ -4,7 +4,7 @@ const Op = DB.Sequelize.Op;
 module.exports ={
     list: (req, res)=>{
         DB.Genero
-            .findAll()
+            .findAll(({include:[{association:"canciones"} ]}))
             .then(generos => {
                 return res.status(200).json({
                     total: generos.length,
@@ -62,7 +62,4 @@ module.exports ={
         
     }
    
-    
 }
-
-// falta agregar que retorne las canciones que tiene cada genero
